@@ -48,7 +48,7 @@ bool isPersonAllowed (std::string person)
 }
 
 // Handles events from the smart door lock IoT device
-void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, int pin_code)
+void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, std::string pin_code) //changed int to std::string
 {
 	// NOTE: The pin_code is only valid for the PIN_CODE_ENTERED event
 
