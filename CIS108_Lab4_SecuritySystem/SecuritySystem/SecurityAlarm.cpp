@@ -21,7 +21,7 @@ namespace SecurityAlarm
 	SecurityAlarmEventHandler securityAlarmEventHandler = nullptr;
 
 	bool alarmEnabled = false;
-	bool isAlarming = false;
+	bool isAlarming = true;
 
 	// Initializes the security alarm
 	void initializeSecurityAlarm (SecurityAlarmEventHandler event_handler)

@@ -7,7 +7,7 @@
   Purpose:		Implements the smart home security system
 */
 
-//Sena's attempt to correct errors
+//Sena's attempt to correct errors.  Ver 3. Door Lock is still doing something weird and cannot get alarm to activate in last two senarios.
 
 #include <iostream>
 
@@ -79,7 +79,7 @@ void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, std::string pin_code
 				else
 				{
 					// access was NOT granted to this person
-					SecurityAlarm::triggerAlarm ("true");
+					SecurityAlarm::triggerAlarm (true); //I still can't get it to trigger the alarm? I am not sure why.
 				}
 			}
 		} break;
@@ -121,7 +121,7 @@ void ssVideoDoorbellEventHandler (VideoDoorbell::VideoDoorbellEvent event, std::
 		{
 			MobileAppInterface::notifyFrontDoorActivity (true, person_at_door);
 
-			if (!isPersonAllowed (person_at_door))
+			if (isPersonAllowed (person_at_door))
 			{
 				access_granted = true;
 				DoorLock::unlockDoor ();
@@ -150,6 +150,7 @@ void ssSecurityAlarmEventHandler (SecurityAlarm::SecurityAlarmEvent event)
 
 		case SecurityAlarm::SecurityAlarmEvent::ALARM_TRIGGERED:
 		{
+			SecurityAlarm::triggerAlarm("true"); //Possibly need SecurityAlarm::
 		} break;
 
 		case SecurityAlarm::SecurityAlarmEvent::ALARM_RESET:
